@@ -1,0 +1,12 @@
+services:
+  geist:
+    build: .
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      RUVIEW_BASE_URL: ${RUVIEW_BASE_URL:-http://192.168.50.50:3000}
+      GEIST_SOURCE: ${GEIST_SOURCE:-ruview}
+      GEIST_PORT: ${GEIST_PORT:-8000}
+      GEIST_DATA_PATH: /app/data/game.json
+    volumes:
+      - ./data:/app/data

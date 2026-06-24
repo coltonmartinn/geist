@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Geist</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <h1>Geist</h1>
+          <p>RuView hot/cold room game</p>
+        </div>
+        <div id="status" class="status">Connecting...</div>
+      </header>
+
+      <section id="warnings" class="warnings" hidden></section>
+
+      <section class="grid">
+        <article class="panel">
+          <h2>Setup</h2>
+          <div class="row">
+            <button id="baselineBtn">Create layout</button>
+            <button id="resetBtn" class="secondary">Reset</button>
+          </div>
+          <div class="capture">
+            <input id="baseName" placeholder="Base name">
+            <button id="baseBtn">Capture base</button>
+          </div>
+          <p id="setupHint" class="hint">Create a layout, then capture 3+ bases.</p>
+        </article>
+
+        <article class="panel">
+          <h2>Game</h2>
+          <div class="target">
+            <span>Target</span>
+            <strong id="targetName">None</strong>
+          </div>
+          <p id="roundInfo" class="hint">Round 0, score 0</p>
+          <div class="warmth">
+            <div id="warmthBar"></div>
+          </div>
+          <div class="row">
+            <button id="startBtn">Start</button>
+            <button id="nextBtn" class="secondary">Next</button>
+            <button id="stopBtn" class="secondary">Stop</button>
+          </div>
+          <div class="settings">
+            <label><input id="showTarget" type="checkbox" checked> show target</label>
+            <label>
+              audio
+              <select id="audioMode">
+                <option value="clicks">clicks</option>
+                <option value="drone">drone</option>
+              </select>
+            </label>
+            <label>
+              timer
+              <select id="timer">
+                <option value="">off</option>
+                <option value="60">60s</option>
+                <option value="120">120s</option>
+              </select>
+            </label>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="split-title">
+          <h2>Nodes</h2>
+          <span id="nodeCount">0 nodes</span>
+        </div>
+        <div id="nodes" class="nodes"></div>
+      </section>
+
+      <section class="panel">
+        <div class="split-title">
+          <h2>Bases</h2>
+          <span id="baseCount">0 bases</span>
+        </div>
+        <div id="bases" class="bases"></div>
+      </section>
+
+      <details class="panel">
+        <summary>Debug</summary>
+        <pre id="debug">{}</pre>
+      </details>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>

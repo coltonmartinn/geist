@@ -1,0 +1,30 @@
+{
+  "classification": {
+    "confidence": 0.5506665425691211,
+    "motion_level": "active",
+    "presence": true
+  },
+  "features": {
+    "motion_band_power": 1722.7913520072377,
+    "variance": 1802.7050971312856
+  },
+  "node_features": [
+    {
+      "node_id": 1,
+      "features": {
+        "motion_band_power": 1722.7913520072377,
+        "variance": 1802.7050971312856
+      },
+      "stale": false
+    }
+  ],
+  "nodes": [
+    {
+      "node_id": 1,
+      "amplitude": [0.0, 35.8, 35.4, 35.7],
+      "stale": false
+    }
+  ],
+  "source": "esp32",
+  "type": "sensing_update"
+}
