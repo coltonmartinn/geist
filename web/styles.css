@@ -119,12 +119,31 @@ h2 {
   align-items: center;
 }
 
+.setup-step {
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-bottom: 8px;
+  background: #0b1120;
+}
+
+.setup-step label {
+  display: block;
+  color: #cbd5e1;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
 .capture {
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .capture input {
   flex: 1 1 160px;
+}
+
+.controls {
+  margin-top: 8px;
 }
 
 .hint {

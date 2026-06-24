@@ -69,6 +69,7 @@ class GeistHandler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("content-type", content_type)
         self.send_header("content-length", str(len(payload)))
+        self.send_header("cache-control", "no-store")
         self.end_headers()
         self.wfile.write(payload)
 

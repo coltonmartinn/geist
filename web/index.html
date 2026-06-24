@@ -21,15 +21,21 @@
       <section class="grid">
         <article class="panel">
           <h2>Setup</h2>
-          <div class="row">
-            <button id="baselineBtn">Create layout</button>
+          <div class="setup-step">
+            <label>1. Nothing moving</label>
+            <button id="baselineBtn">Record empty room baseline</button>
+          </div>
+          <div class="setup-step">
+            <label>2. Someone moving at the base</label>
+            <div class="capture">
+              <input id="baseName" placeholder="Base name">
+              <button id="baseBtn">Record movement at base</button>
+            </div>
+          </div>
+          <div class="row controls">
             <button id="resetBtn" class="secondary">Reset</button>
           </div>
-          <div class="capture">
-            <input id="baseName" placeholder="Base name">
-            <button id="baseBtn">Capture base</button>
-          </div>
-          <p id="setupHint" class="hint">Create a layout, then capture 3+ bases.</p>
+          <p id="setupHint" class="hint">Record the empty room once, then record 3+ movement bases.</p>
         </article>
 
         <article class="panel">

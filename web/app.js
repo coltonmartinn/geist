@@ -25,9 +25,23 @@ function ensureAudio() {
   return audio;
 }
 
-function setAudioWarmth(value) {
-  latestWarmth = Math.max(0, Math.min(1, value || 0));
+function stopAudio() {
   if (!audio) return;
+  if (audio.drone) {
+    audio.drone.stop();
+    audio.drone = null;
+  }
+  audio.gain.gain.value = 0.0;
+}
+
+function setAudioWarmth(value, active) {
+  latestWarmth = Math.max(0, Math.min(1, value || 0));
+  if (!active) {
+    stopAudio();
+    return;
+  }
+  if (!audio) return;
+  audio.gain.gain.value = 0.04;
   const now = audio.ctx.currentTime;
   if (audioMode.value === "drone") {
     if (!audio.drone) {
@@ -61,7 +75,6 @@ function setAudioWarmth(value) {
 }
 
 async function api(method, path, body = undefined) {
-  ensureAudio();
   const response = await fetch(path, {
     method,
     headers: { "content-type": "application/json" },
@@ -100,8 +113,10 @@ function render(data) {
   }).join("");
 
   const warmth = Number(data.warmth || 0);
+  const state = data.state || {};
+  const audioActive = state.mode === "seeking";
   warmthBar.style.width = `${Math.round(warmth * 100)}%`;
-  setAudioWarmth(warmth);
+  setAudioWarmth(warmth, audioActive);
 
   if (data.target?.hidden) {
     targetName.textContent = "Hidden";
@@ -110,7 +125,6 @@ function render(data) {
   } else {
     targetName.textContent = "None";
   }
-  const state = data.state || {};
   roundInfo.textContent = `Mode ${state.mode || "idle"}, round ${state.round || 0}, score ${state.score || 0}`;
 
   showTarget.checked = Boolean(data.settings?.show_target ?? true);
@@ -165,6 +179,7 @@ document.querySelector("#baseBtn").addEventListener("click", (event) => {
 });
 
 document.querySelector("#startBtn").addEventListener("click", (event) => {
+  ensureAudio();
   withBusy(event.currentTarget, () => api("POST", "/api/game/start", {
     show_target: showTarget.checked,
     timer_seconds: timer.value ? Number(timer.value) : null,

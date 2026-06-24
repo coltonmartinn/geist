@@ -31,6 +31,22 @@ If your Rev3 guide used a different Pi IP, edit `.env`:
 RUVIEW_BASE_URL=http://YOUR_PI_IP:3000
 ```
 
+## Upgrade on the Pi
+
+```sh
+cd ~/geist
+git pull
+./run.sh
+```
+
+Then reload:
+
+```text
+http://192.168.50.50:8000
+```
+
+If Geist was cloned somewhere else, use that path instead of `~/geist`.
+
 ## Test without RuView
 
 ```sh
@@ -40,8 +56,8 @@ GEIST_SOURCE=mock docker compose up -d --build
 ## Play
 
 1. Make sure RuView is running.
-2. Create a layout with the room empty.
-3. Capture at least 3 bases.
+2. Record the empty room baseline with nothing moving.
+3. Record movement at 3 or more bases.
 4. Start with "show target" on.
 5. Switch target hidden after it works.
 
@@ -59,4 +75,12 @@ Use whatever node count RuView reports. For best fidelity, use 6 nodes.
 
 ```sh
 ./test.sh
+```
+
+## Commit and push
+
+```sh
+git add .
+git -c user.name="coltonmartinn" -c user.email="colton.owen.m@gmail.com" commit -m "Update Geist"
+git -c credential.helper= push
 ```
